@@ -29,21 +29,15 @@ var
   i: Integer;
   LText: String;
 begin
-  Result := AValue;
-  for i:=1 to Length(AValue) do
-  begin
-    if (AValue[i] in ['a'..'z']) or (AValue[i] = ' ') then
+  LText := '';
+  for i := 1 to Length(AValue) do
     begin
-      if (i=1) then
-        LText := ToUpper(AValue[i])
-      else if AValue[i-1]=' ' then
+      if (i = 1) or ((AValue[i - 1] = ' ') and (AValue[i] in ['a'..'z'])) then
         LText := LText + ToUpper(AValue[i])
       else
         LText := LText + AValue[i];
-
-      Result := LText;
     end;
-  end;
+  Result := LText;
 end;
 
 end.
